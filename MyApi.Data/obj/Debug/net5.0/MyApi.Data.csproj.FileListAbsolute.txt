@@ -1,0 +1,11 @@
+D:\guitar\MyProject\MyProject\MyApi.Data\bin\Debug\net5.0\MyApi.Data.deps.json
+D:\guitar\MyProject\MyProject\MyApi.Data\bin\Debug\net5.0\MyApi.Data.dll
+D:\guitar\MyProject\MyProject\MyApi.Data\bin\Debug\net5.0\ref\MyApi.Data.dll
+D:\guitar\MyProject\MyProject\MyApi.Data\bin\Debug\net5.0\MyApi.Data.pdb
+D:\guitar\MyProject\MyProject\MyApi.Data\obj\Debug\net5.0\MyApi.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\guitar\MyProject\MyProject\MyApi.Data\obj\Debug\net5.0\MyApi.Data.AssemblyInfoInputs.cache
+D:\guitar\MyProject\MyProject\MyApi.Data\obj\Debug\net5.0\MyApi.Data.AssemblyInfo.cs
+D:\guitar\MyProject\MyProject\MyApi.Data\obj\Debug\net5.0\MyApi.Data.csproj.CoreCompileInputs.cache
+D:\guitar\MyProject\MyProject\MyApi.Data\obj\Debug\net5.0\MyApi.Data.dll
+D:\guitar\MyProject\MyProject\MyApi.Data\obj\Debug\net5.0\ref\MyApi.Data.dll
+D:\guitar\MyProject\MyProject\MyApi.Data\obj\Debug\net5.0\MyApi.Data.pdb

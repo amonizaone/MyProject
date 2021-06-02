@@ -1,0 +1,5 @@
+gacutil.exe
+
+gacutil /i "Config\SSRS_QR_DLL\QRCoder.dll" /f
+gacutil /i "Config\SSRS_QR_DLL\QRCoderImageToByteArray.dll" /f
+ 
