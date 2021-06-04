@@ -19,14 +19,14 @@ namespace MyApi.Controllers.v1
     [ApiController]
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/report")]
-    public class ReportController : ControllerBase
+    public class ReportsController : ControllerBase
     {
         #region field
         private readonly ISSRSRender _ssrs;
 
 
         #endregion field
-        public ReportController()
+        public ReportsController()
         {
             _ssrs = new SSRSRender(new SSRS()
             {

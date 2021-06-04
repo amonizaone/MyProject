@@ -8,6 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MyApi.Core.Authorization;
+using MyApi.Core.Helpers;
+using MyApi.Core.Middleware;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,7 +33,12 @@ namespace MyApi
         {
 
             services.AddCors();
+            // configure strongly typed settings objects
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
+            // configure DI for application services
+            services.AddScoped<IJwtUtils, JwtUtils>();
+            //services.AddScoped<IUserService, UserService>();
 
             services.AddControllers().AddJsonOptions(s =>
             {
@@ -124,7 +132,11 @@ namespace MyApi
            );
 
             app.UseAuthorization();
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
 
             app.UseEndpoints(endpoints =>
