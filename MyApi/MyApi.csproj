@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Reports\RTP-Prouct-001.rdlc" />
+    <None Remove="Reports\RTP-Product-001.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Reports\RTP-Prouct-001.rdlc">
+    <EmbeddedResource Include="Reports\RTP-Product-001.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

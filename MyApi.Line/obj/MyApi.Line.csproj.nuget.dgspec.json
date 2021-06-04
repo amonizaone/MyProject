@@ -45,6 +45,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.Azure.WebJobs.Extensions.Http": {
+              "target": "Package",
+              "version": "[3.0.12, )"
+            },
             "line-bot-sdk-csharp": {
               "target": "Package",
               "version": "[2.0.0, )"

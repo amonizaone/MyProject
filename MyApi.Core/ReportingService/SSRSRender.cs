@@ -87,21 +87,17 @@ namespace MyApi.Core
         }
 
         public async Task<byte[]> RenderLocal(string reportName, string reportPath, List<RequestDataSet> dataSource, NameValueCollection reportParameters, string outputFormat = "PDF")
-        {
-            // string url = BuildFullRenderUrl(reportPath, reportParameters, outputFormat);
-            // HttpClient client = _httpClientFactory.CreateClient("SSRS");
+        { 
             try
             {
                  
-               var newPath = reportPath.HasElement() ? $"{reportPath}.{reportName}.rdlc" 
-                    : $"{System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Reports")}\\{reportName}.rdlc";
-                 
-                // D:\guitar\MyProject\MyProject\MyApi\ReportFiles\
-                using var reportDefinition = Assembly.GetExecutingAssembly().GetManifestResourceStream("MyApi.Reports.RTP-Prouct-001.rdlc");
+               var currentReport = reportPath.HasElement() ? $"{reportPath}.{reportName}.rdlc" 
+                    : $"{Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Reports")}\\{reportName}.rdlc";
+                  
+                //using var reportDefinition = Assembly.GetExecutingAssembly().GetManifestResourceStream("Reports.RTP-Prouct-001.rdlc");
              
                 LocalReport report = new();
-                report.ReportPath = newPath;
-                //report.LoadReportDefinition(reportDefinition);
+                report.ReportPath = currentReport;
                 dataSource.ForEach(ds => { report.DataSources.Add(new ReportDataSource { Name = ds.Name, Value = ds.Value }); });
 
                 BuildParameterLocal(reportParameters, report);

@@ -1,0 +1,11 @@
+﻿dotnet ef dbcontext scaffold "Server=DESKTOP-TBDQ3SD;Database=GTShop;User Id=dev_user;Password=123456;" \ 
+Microsoft.EntityFrameworkCore.SqlServer \
+-o Models/Context \
+-c MyDbContext 
+-t Product 
+-t User
+-f
+
+
+
+dotnet ef dbcontext scaffold "Server=DESKTOP-TBDQ3SD;Database=GTShop;User Id=dev_user;Password=123456;" Microsoft.EntityFrameworkCore.SqlServer -o Models/Context -c MyDbContext -t Product -t User -f
