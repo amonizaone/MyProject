@@ -9,3 +9,15 @@ D:\guitar\MyProject\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.csproj.Core
 D:\guitar\MyProject\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.dll
 D:\guitar\MyProject\MyProject\MyApi.Line\obj\Debug\net5.0\ref\MyApi.Line.dll
 D:\guitar\MyProject\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.pdb
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\bin\Debug\net5.0\MyApi.Line.deps.json
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\bin\Debug\net5.0\MyApi.Line.dll
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\bin\Debug\net5.0\ref\MyApi.Line.dll
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\bin\Debug\net5.0\MyApi.Line.pdb
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.csproj.AssemblyReference.cache
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.GeneratedMSBuildEditorConfig.editorconfig
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.AssemblyInfoInputs.cache
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.AssemblyInfo.cs
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.csproj.CoreCompileInputs.cache
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.dll
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\obj\Debug\net5.0\ref\MyApi.Line.dll
+D:\guitar\MyProject\New folder\MyProject\MyApi.Line\obj\Debug\net5.0\MyApi.Line.pdb

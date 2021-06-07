@@ -52,7 +52,7 @@ namespace MyApi.Core.Services.Users
 
             if (!VerifyPassword(password, user?.Password))
                 return null;
-            var userView= new UsersViewModel()
+            var userView = new UsersViewModel()
             {
                 Id = user.Id,
                 Email = user.Email,
@@ -82,7 +82,7 @@ namespace MyApi.Core.Services.Users
             {
                 Id = DateTime.Now.Second,
                 ExpiredDt = tokenDescriptor.Expires,
-                UserId= user.Id,
+                UserId = user.Id,
                 RefreshToken = refreshKey,
                 AccessToken = tokenHandler.WriteToken(token)
             };
@@ -90,6 +90,16 @@ namespace MyApi.Core.Services.Users
             return userView;
         }
 
+        public UsersViewModel GetUser(int userId)
+        {
+            var user = _dbContext.Users.FirstOrDefault(x => x.Id == userId);
+            if (user == null) throw new AppException("User not found");
+            UsersViewModel usersView = new() { };
+
+
+            return usersView;
+
+        }
         //public AuthenticateResponse RefreshToken(string token, string ipAddress)
         //{
         //    var user = _dbContext.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));

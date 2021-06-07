@@ -15,7 +15,7 @@ namespace MyApi.Core.Share
 
     public class LocaleViewModel
     {
-        public string Th { get;set }
+        public string Th { get; set; }
         public string En { get; set; }
     }
 }
