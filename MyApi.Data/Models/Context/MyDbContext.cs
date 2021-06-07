@@ -8,7 +8,6 @@ namespace MyApi.Data.Models.Context
 {
     public partial class MyDbContext : DbContext
     { 
-
         public MyDbContext(DbContextOptions<MyDbContext> options)
             : base(options)
         {
@@ -18,7 +17,8 @@ namespace MyApi.Data.Models.Context
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<User> Users { get; set; }
-         
+        public virtual DbSet<UsersToken> UsersTokens { get; set; }
+ 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -205,6 +205,62 @@ namespace MyApi.Data.Models.Context
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasComment("Register,Line,Facebook,Google");
+            });
+
+            modelBuilder.Entity<UsersToken>(entity =>
+            {
+                entity.ToTable("Users_Token");
+
+                entity.Property(e => e.ActiveStatus)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Active_Status")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.CreatedBy)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("Created_By");
+
+                entity.Property(e => e.CreatedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("Created_DT");
+
+                entity.Property(e => e.ExpiredFlag)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Expired_Flag")
+                    .HasDefaultValueSql("('N')")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.Expires).HasColumnType("datetime");
+
+                entity.Property(e => e.IpAddress)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedBy)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("Modified_By");
+
+                entity.Property(e => e.ModifiedDt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("Modified_DT");
+
+                entity.Property(e => e.ReplacedByToken)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Revoked).HasColumnType("datetime");
+
+                entity.Property(e => e.RevokedByIp)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Token)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

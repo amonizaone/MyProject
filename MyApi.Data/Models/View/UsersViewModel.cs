@@ -26,5 +26,7 @@ namespace MyApi.Data.Models.View
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
         public DateTime? ExpiredDt { get; set; }
+        public DateTime CreatedBy { get; set; }
+        public string CreatedByIp { get; set; }
     }
 }

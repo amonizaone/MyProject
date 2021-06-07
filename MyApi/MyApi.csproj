@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MyApi.Core\MyApi.Core.csproj" />
     <ProjectReference Include="..\MyApi.Data\MyApi.Data.csproj" />
+    <ProjectReference Include="..\MyApi.Line\MyApi.Line.csproj" />
   </ItemGroup>
 
   <ItemGroup>

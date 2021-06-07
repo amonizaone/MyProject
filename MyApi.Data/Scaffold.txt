@@ -6,8 +6,9 @@ Microsoft.EntityFrameworkCore.SqlServer \
 -t Product_Categories
 -t Product_Images
 -t Users
+-t Users_Token
 -f
 
 
 
-dotnet ef dbcontext scaffold "Server=DESKTOP-TBDQ3SD;Database=GTShop;User Id=dev_user;Password=123456;" Microsoft.EntityFrameworkCore.SqlServer -o Models/Context -c MyDbContext -t Products -t Product_Categories -t Product_Images -t Users -f
+dotnet ef dbcontext scaffold "Server=DESKTOP-TBDQ3SD;Database=GTShop;User Id=dev_user;Password=123456;" Microsoft.EntityFrameworkCore.SqlServer -o Models/Context -c MyDbContext -t Products -t Product_Categories -t Product_Images -t Users -t Users_Token -f
