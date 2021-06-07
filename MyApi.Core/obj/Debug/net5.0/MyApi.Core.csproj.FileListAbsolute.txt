@@ -13,11 +13,14 @@ D:\guitar\MyProject\New folder\MyProject\MyApi.Core\bin\Debug\net5.0\MyApi.Core.
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\bin\Debug\net5.0\MyApi.Core.dll
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\bin\Debug\net5.0\ref\MyApi.Core.dll
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\bin\Debug\net5.0\MyApi.Core.pdb
+D:\guitar\MyProject\New folder\MyProject\MyApi.Core\bin\Debug\net5.0\MyApi.Data.dll
+D:\guitar\MyProject\New folder\MyProject\MyApi.Core\bin\Debug\net5.0\MyApi.Data.pdb
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\MyApi.Core.csproj.AssemblyReference.cache
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\MyApi.Core.GeneratedMSBuildEditorConfig.editorconfig
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\MyApi.Core.AssemblyInfoInputs.cache
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\MyApi.Core.AssemblyInfo.cs
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\MyApi.Core.csproj.CoreCompileInputs.cache
+D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\MyApi.Core.csproj.CopyComplete
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\MyApi.Core.dll
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\ref\MyApi.Core.dll
 D:\guitar\MyProject\New folder\MyProject\MyApi.Core\obj\Debug\net5.0\MyApi.Core.pdb

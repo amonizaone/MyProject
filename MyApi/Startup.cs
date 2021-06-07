@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,8 @@ using Microsoft.OpenApi.Models;
 using MyApi.Core.Authorization;
 using MyApi.Core.Helpers;
 using MyApi.Core.Middleware;
+using MyApi.Core.Services.Users;
+using MyApi.Data.Models.Context;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -38,7 +41,20 @@ namespace MyApi
 
             // configure DI for application services
             services.AddScoped<IJwtUtils, JwtUtils>();
-            //services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddDbContext<MyDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection"),
+              sqlServerOptionsAction: sqlOptions =>
+               {
+                   sqlOptions.EnableRetryOnFailure(
+                       maxRetryCount :10,
+                       maxRetryDelay :TimeSpan.FromSeconds(30),
+                       errorNumbersToAdd:null
+                       );
+               }
+            )
+            );
 
             services.AddControllers().AddJsonOptions(s =>
             {
@@ -68,7 +84,8 @@ namespace MyApi
                 options.SubstituteApiVersionInUrl = true;
             });
 
-            services.AddApiVersioning(options => {
+            services.AddApiVersioning(options =>
+            {
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.ReportApiVersions = true;

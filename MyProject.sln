@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApi", "MyApi\MyApi.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApi.Data", "MyApi.Data\MyApi.Data.csproj", "{4E890EC9-811F-4415-B7EA-4B8E563711C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApi.Line", "MyApi.Line\MyApi.Line.csproj", "{78F43F98-5EBB-436B-BC3B-612E497AFBFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApi.Line", "MyApi.Line\MyApi.Line.csproj", "{78F43F98-5EBB-436B-BC3B-612E497AFBFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8Py+nY3gMPhE16X1z9joyS4lhmUOa2lXzX2wAde0TryP23etH0sonLRaw38UiJ4joowjkQuNflluT9Jsh1p0mg==",
+  "dgSpecHash": "MCtw4018f4eiAQ0JgIB2Ng6DKkALp4L92y3VPLddOOxjRbVw74SOKSwKGUu9g4A/mH0NtTtW3Ww27sZ3d2Z3Og==",
   "success": true,
   "projectFilePath": "D:\\guitar\\MyProject\\New folder\\MyProject\\MyApi.Core\\MyApi.Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dell_003\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\Dell_003\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Dell_003\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\Dell_003\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
