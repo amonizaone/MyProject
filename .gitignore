@@ -452,3 +452,17 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+MyApi/obj
+MyApi.Core/obj
+MyApi.Core/bin
+MyApi.Data/obj
+MyApi.Data/bin
+MyApi.Line/obj
+MyApi.Line/bin
+MyApi.Services/obj
+MyApi.Services/bin
+MyReport/obj
+MyReport/bin
+MyWeb/obj
+MyWeb/bin
