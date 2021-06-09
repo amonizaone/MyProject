@@ -78,7 +78,7 @@ namespace MyApi.Core.Services.Users
             };
             string refreshKey = Guid.NewGuid().ToString("N");
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            userView.UserToken = new TokenViewModel
+            userView.Token = new TokenViewModel
             {
                 Id = DateTime.Now.Second,
                 ExpiredDt = tokenDescriptor.Expires,

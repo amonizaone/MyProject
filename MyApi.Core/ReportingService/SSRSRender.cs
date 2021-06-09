@@ -156,7 +156,7 @@ namespace MyApi.Core
 
             var items = reqParams.AllKeys.SelectMany(reqParams.GetValues, (k, v) => new { key = k, value = v });
 
-            for (int i = 0; i < parameters.Count; i++)
+            for (int i = 0; i < parametersReport.Count; i++)
             {
                 var paramReport = parametersReport[i];
                 var findReportRequest = items.FirstOrDefault(o => o.key?.ToUpper() == paramReport?.Name.ToUpper());

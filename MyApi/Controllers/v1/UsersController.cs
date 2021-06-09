@@ -39,6 +39,14 @@ namespace MyApi.Controllers.v1
         }
 
         // POST api/<UserController>
+        [HttpGet("auth/me")]
+        public IActionResult GetUserLogin()
+        {
+            var user = _userService.Authenticate("amonizaone@gmail.com", "123456");
+            return Ok(user);
+        }
+
+        // POST api/<UserController>
         [HttpPost("auth/refresh/token")]
         public IActionResult PostRefreshToken([FromBody] UserAuthModel userAuth)
         {

@@ -9,7 +9,7 @@ namespace MyApi.Data.Models.View
 {
     public class UsersViewModel : User
     {
-        public TokenViewModel UserToken { get; set; }
+        public TokenViewModel Token { get; set; }
          public List<RoleViewModel> Roles { get; set; }
     }
 
