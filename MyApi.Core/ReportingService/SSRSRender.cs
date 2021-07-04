@@ -26,9 +26,10 @@ namespace MyApi.Core
         /// Constructs a new instance of the SimpleSSRSRender class
         /// </summary>
         /// <param name="serverUrl">URL of the Report Server</param>
-        public SSRSRender(SSRS _appSettings)
+        public SSRSRender(SSRS _appSettings, string serverUrl = null)
         {
             ssrsSetting = _appSettings;
+            _serverUrl = serverUrl;
         }
 
         public SSRS GetReportSetting() => ssrsSetting;
