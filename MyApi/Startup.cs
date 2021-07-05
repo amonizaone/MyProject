@@ -158,6 +158,7 @@ namespace MyApi
            //.AllowCredentials()
            );
 
+            app.UseAuthentication();
             app.UseAuthorization();
             // global error handler
             app.UseMiddleware<ErrorHandlerMiddleware>();
