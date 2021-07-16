@@ -1,0 +1,2 @@
+https://github.com/Carlos487/awesome-wpf
+https://github.com/Federerer/Notifications.Wpf

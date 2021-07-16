@@ -23,7 +23,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWeb", "MyWeb\MyWeb.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scheduler", "Scheduler", "{B3197E8A-AAB0-41D0-A232-A546F735D302}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApi.Scheduler", "MyApi.Scheduler\MyApi.Scheduler.csproj", "{CB2B24AE-1708-41D7-BB00-91F51236B4A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApi.Scheduler", "MyApi.Scheduler\MyApi.Scheduler.csproj", "{CB2B24AE-1708-41D7-BB00-91F51236B4A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinForm", "WinForm", "{039A91F5-C67F-4814-960E-8686F8C881D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "My.Wpf", "My.Wcf\My.Wpf.csproj", "{069E6F37-5C23-4B55-9790-ACA5C2468A7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B455A18B-B848-4DF4-AAFC-28D39219473A}"
+	ProjectSection(SolutionItems) = preProject
+		TextFile1.txt = TextFile1.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +86,12 @@ Global
 		{CB2B24AE-1708-41D7-BB00-91F51236B4A3}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{CB2B24AE-1708-41D7-BB00-91F51236B4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB2B24AE-1708-41D7-BB00-91F51236B4A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{069E6F37-5C23-4B55-9790-ACA5C2468A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{069E6F37-5C23-4B55-9790-ACA5C2468A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{069E6F37-5C23-4B55-9790-ACA5C2468A7E}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{069E6F37-5C23-4B55-9790-ACA5C2468A7E}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{069E6F37-5C23-4B55-9790-ACA5C2468A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{069E6F37-5C23-4B55-9790-ACA5C2468A7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +104,7 @@ Global
 		{78F43F98-5EBB-436B-BC3B-612E497AFBFA} = {2CE46491-67DD-4596-B566-C053FC929223}
 		{16E0157C-3469-4335-90FF-6BCC64691370} = {9D3FB653-CC2B-493B-AA6E-76091B2080FB}
 		{CB2B24AE-1708-41D7-BB00-91F51236B4A3} = {B3197E8A-AAB0-41D0-A232-A546F735D302}
+		{069E6F37-5C23-4B55-9790-ACA5C2468A7E} = {039A91F5-C67F-4814-960E-8686F8C881D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D31CCFD0-3FDC-42D8-81E2-17BAA82925B0}

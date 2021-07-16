@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MyApi
@@ -52,6 +53,8 @@ namespace MyApi
             // configure DI for application services
             services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IUserService, UserService>();
+            services.AddHttpClient();
+
 
             services.AddDbContext<MyDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection"),

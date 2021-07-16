@@ -88,22 +88,22 @@ namespace MyApi.Core
         }
 
         public async Task<byte[]> RenderLocal(string reportName, string reportPath, List<RequestDataSet> dataSource, NameValueCollection reportParameters, string outputFormat = "PDF")
-        { 
+        {
             try
             {
-                 
-               var currentReport = reportPath.HasElement() ? $"{reportPath}.{reportName}.rdlc" 
-                    : $"{Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Reports")}\\{reportName}.rdlc";
-                  
+
+                string currentReport = reportPath.HasElement() ? $"{reportPath}.{reportName}.rdlc"
+                     : $"{Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Reports")}\\{reportName}.rdlc";
+
                 //using var reportDefinition = Assembly.GetExecutingAssembly().GetManifestResourceStream("Reports.RTP-Prouct-001.rdlc");
-             
+
                 LocalReport report = new();
                 report.ReportPath = currentReport;
                 dataSource.ForEach(ds => { report.DataSources.Add(new ReportDataSource { Name = ds.Name, Value = ds.Value }); });
 
                 BuildParameterLocal(reportParameters, report);
 
-                var result = await Task.FromResult(report.Render(outputFormat));
+                byte[] result = await Task.FromResult(report.Render(outputFormat));
 
                 return result;
             }
@@ -113,7 +113,7 @@ namespace MyApi.Core
             }
             //return await client.GetByteArrayAsync(url);
 
-        } 
+        }
 
         /// <summary>
         /// Build the URL for the report
@@ -139,7 +139,7 @@ namespace MyApi.Core
         {
             string parameterString = string.Empty;
 
-            var items = reportParameters.AllKeys.SelectMany(reportParameters.GetValues, (k, v) => new { key = k, value = v });
+            var items = reportParameters.AllKeys.SelectMany(reportParameters.GetValues, (k, v) => (key: k, value: v));
             foreach (var item in items)
             {
                 if (!string.IsNullOrEmpty(item.value)) parameterString += $"&{item.key}={item.value}";
@@ -153,15 +153,15 @@ namespace MyApi.Core
         {
             List<ReportParameter> parameters = new();
 
-            var parametersReport = report.GetParameters().ToList();
+            List<ReportParameterInfo> parametersReport = report.GetParameters().ToList();
 
-            var items = reqParams.AllKeys.SelectMany(reqParams.GetValues, (k, v) => new { key = k, value = v });
+            var items = reqParams.AllKeys.SelectMany(reqParams.GetValues, (k, v) => (key: k, value: v));
 
             for (int i = 0; i < parametersReport.Count; i++)
             {
-                var paramReport = parametersReport[i];
+                ReportParameterInfo paramReport = parametersReport[i];
                 var findReportRequest = items.FirstOrDefault(o => o.key?.ToUpper() == paramReport?.Name.ToUpper());
-                parameters.Add(new ReportParameter(paramReport.Name, findReportRequest?.value ?? null));
+                parameters.Add(new ReportParameter(paramReport.Name, findReportRequest.value ?? null));
 
             }
 
@@ -172,15 +172,17 @@ namespace MyApi.Core
         {
             List<ReportParameter> parameters = new();
 
-            var parametersReport = report.GetParameters().ToList();
+            List<ReportParameterInfo> parametersReport = report.GetParameters().ToList();
 
-            var items = reqParams.AllKeys.SelectMany(reqParams.GetValues, (k, v) => new { key = k, value = v });
+            var items = reqParams.AllKeys.SelectMany(reqParams.GetValues, (k, v) => (key: k, value: v));
 
             for (int i = 0; i < parameters.Count; i++)
             {
-                var paramReport = parametersReport[i];
+                ReportParameterInfo paramReport = parametersReport[i];
                 var findReportRequest = items.FirstOrDefault(o => o.key?.ToUpper() == paramReport?.Name.ToUpper());
-                parameters.Add(new ReportParameter(paramReport.Name, findReportRequest?.value ?? null));
+                if (findReportRequest.value == null) continue;
+
+                parameters.Add(new ReportParameter(paramReport.Name, findReportRequest.value ?? null));
 
             }
 

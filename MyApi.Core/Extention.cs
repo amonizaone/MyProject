@@ -138,7 +138,7 @@ namespace MyApi.Core
                 sb.AppendLine(key.ToString() + ": " + ex.Data[key].ToString());
             }
 
-            if (String.IsNullOrEmpty(ex.StackTrace))
+            if (string.IsNullOrEmpty(ex.StackTrace))
             {
                 sb.AppendLine("Environment Stack Trace: " + ex.StackTrace);
             }
@@ -346,7 +346,17 @@ namespace MyApi.Core
         {
             return Regex.Replace(key, @"\d", "");
         }
+        public static string Encode(string plainText)
+        {
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            return Convert.ToBase64String(plainTextBytes);
+        }
 
+        public static string Decode(string encodeText)
+        {
+            byte[] encodeTextBytes = Convert.FromBase64String(encodeText);
+            return Encoding.UTF8.GetString(encodeTextBytes);
+        }
         public static decimal PercentCalculation(decimal current, double percent) => (current / 100) * (decimal)percent;
         public static T Clamp<T>(T value, T min, T max) where T : IComparable<T>
         {
