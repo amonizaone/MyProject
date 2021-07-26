@@ -1,3 +1,7 @@
+using iel.imot.Helper;
+using JN.Authentication.Interfaces;
+using JN.Authentication.Scheme;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,17 +12,21 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyApi.Core.Authorization;
 using MyApi.Core.Helpers;
 using MyApi.Core.Middleware;
 using MyApi.Core.Services.Users;
 using MyApi.Data.Models.Context;
+using MyApi.Filters;
+using MyApi.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MyApi
@@ -38,7 +46,7 @@ namespace MyApi
 
             services.AddCors();
             // configure strongly typed settings objects
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
 
 
             // add session 
@@ -49,21 +57,26 @@ namespace MyApi
                 options.Cookie.IsEssential = true;
             });
             // add session
+            var secret = $"{Configuration["AppSettings:Secret"]}"; // Configuration.GetSection("AppSettings:Secret");
+
+            var key = Encoding.ASCII.GetBytes(secret);
 
             // configure DI for application services
             services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IUserService, UserService>();
+            services.AddSingleton(Configuration);
             services.AddHttpClient();
 
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddDbContext<MyDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection"),
               sqlServerOptionsAction: sqlOptions =>
                {
                    sqlOptions.EnableRetryOnFailure(
-                       maxRetryCount :10,
-                       maxRetryDelay :TimeSpan.FromSeconds(30),
-                       errorNumbersToAdd:null
+                       maxRetryCount: 10,
+                       maxRetryDelay: TimeSpan.FromSeconds(30),
+                       errorNumbersToAdd: null
                        );
                }
             )
@@ -108,31 +121,103 @@ namespace MyApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyApi", Version = "v1" });
 
-                //c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement() {
+                    {
+                        new OpenApiSecurityScheme {
+                        Reference = new OpenApiReference {
+                            Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        },
+                        new List<string> ()
+                    }
+                });
+
+
+                c.AddSecurityDefinition("X-API-KEY", new OpenApiSecurityScheme()
+                {
+                    Description = "Authorization by x-api-key inside request's header",
+                    Name = "X-API-KEY",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                var key = new OpenApiSecurityScheme()
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "ApiKey"
+                    },
+                    In = ParameterLocation.Header
+                };
+                var requirement = new OpenApiSecurityRequirement
+                {
+                   { key, new List<string>() }
+                };
+
+                c.AddSecurityRequirement(requirement);
+                //c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme()
                 //{
-                //    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\"",
-                //    Name = "Authorization",
+                //    Name = "x-api-key",
                 //    In = ParameterLocation.Header,
                 //    Type = SecuritySchemeType.ApiKey,
-                //    Scheme = "Bearer"
+                //    Description = "Authorization by x-api-key inside request's header",
+                //    Scheme = "ApiKeyScheme"
                 //});
 
-                //c.AddSecurityRequirement(new OpenApiSecurityRequirement() {
-                //    {
-                //        new OpenApiSecurityScheme {
-                //        Reference = new OpenApiReference {
-                //            Type = ReferenceType.SecurityScheme,
-                //                Id = "Bearer"
-                //            },
-                //            Scheme = "oauth2",
-                //            Name = "Bearer",
-                //            In = ParameterLocation.Header,
-                //        },
-                //        new List<string> ()
-                //    }
-                //});
+               
+                //var requirement = new OpenApiSecurityRequirement
+                //{
+                //   { key, new List<string>() }
+                //};
 
+                //c.AddSecurityRequirement(requirement);
+
+                c.OperationFilter<AuthOperationFiler>();
             });
+
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+             .AddJwtBearer(x =>
+             {
+                 x.RequireHttpsMetadata = false;
+                 x.SaveToken = true;
+                 x.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidateIssuerSigningKey = true,
+                     IssuerSigningKey = new SymmetricSecurityKey(key),
+                     ValidateIssuer = false,
+                     ValidateAudience = false
+                 };
+             });
+
+
+
+            //services.AddAuthorization(options => { 
+
+
+
+            //});
+
+            services.AddHttpContextAccessor();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -145,6 +230,9 @@ namespace MyApi
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyApi v1");
+                    //Collapse model near example.
+                    c.DefaultModelExpandDepth(0);
+                    //Remove separate model definition.
                     c.DefaultModelsExpandDepth(-1);
                 });
 

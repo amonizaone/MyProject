@@ -141,8 +141,10 @@ namespace MyApi.Controllers.v1
                 RestClientHelper restClientHelper = new RestClientHelper(_httpClientFactory);
 
                 var lineSetting = options.Value.LineSetting;
-                Dictionary<string, string> additionalHeaders = new Dictionary<string, string>();
-                additionalHeaders.Add("Authorization", $"Bearer {requestModel.Token}");
+                Dictionary<string, string> additionalHeaders = new Dictionary<string, string>
+                {
+                    { "Authorization", $"Bearer {requestModel.Token}" }
+                };
                 requestModel.Token = null;
                 var result = await restClientHelper.PostAsync($"{apiLineMe}/api/notify", requestModel, additionalHeaders, "application/x-www-form-urlencoded");
                 var response = result.DeserializeObject<object>();

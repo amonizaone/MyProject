@@ -25,9 +25,11 @@ namespace MyApi.Controllers.v1
         }
         // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        //[Authorize]
+        [Authorize]
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(new string[] { "value1", "value2" });
         }
 
         // POST api/<UserController>

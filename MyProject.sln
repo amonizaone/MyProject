@@ -27,12 +27,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApi.Scheduler", "MyApi.Sc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinForm", "WinForm", "{039A91F5-C67F-4814-960E-8686F8C881D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "My.Wpf", "My.Wcf\My.Wpf.csproj", "{069E6F37-5C23-4B55-9790-ACA5C2468A7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "My.Wpf", "My.Wcf\My.Wpf.csproj", "{069E6F37-5C23-4B55-9790-ACA5C2468A7E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B455A18B-B848-4DF4-AAFC-28D39219473A}"
 	ProjectSection(SolutionItems) = preProject
 		TextFile1.txt = TextFile1.txt
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TESTReport", "TESTReport", "{4A46B3BB-F10A-4590-9609-9D28F4264EAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

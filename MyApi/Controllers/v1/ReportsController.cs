@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -30,10 +31,10 @@ namespace MyApi.Controllers.v1
         {
             _ssrs = new SSRSRender(new SSRS()
             {
-                Host = "",
+                Host = "http://localhost/reportserver",
                 Username = "",
                 Password = "",
-                Path = "",
+                Path = "/MyReport",
             });
         }
 
@@ -57,10 +58,35 @@ namespace MyApi.Controllers.v1
 
                 string fileName = $"Export-{reportName}{DateTime.Now:yyyyMMddHHmm}.{format}";
                 var IsfileContent = new FileExtensionContentTypeProvider().TryGetContentType(fileName, out string contentType);
-                var result = await _ssrs.RenderReport($"{reportServer.Path}/{reportName}", paramsColection);
+                var result = await _ssrs.Render($"{reportServer.Path}/{reportName}", paramsColection, format);
+                //UTF8Encoding utf8 = new UTF8Encoding(true, true);
 
-                return File(result, $"{contentType}", fileName);
+                //Byte[] bytes = new Byte[utf8.GetByteCount(s) + utf8.GetPreamble().Length];
 
+
+                // Encoding.GetString(result, 0,result.Length);
+
+                // RPT-Product-0001.rdl
+
+                List<string> listType = new List<string> { "HTML4.0", "HTML5", "MHTML" };
+                if (listType.Contains(format))
+                {
+                    var content = Encoding.UTF8.GetString(result);
+                    return Ok(new
+                    {
+
+                        Content = content
+
+                    });
+                }
+                else
+                {
+                    return File(result, $"{contentType}", fileName);
+                }
+
+
+
+                /// HTML4.0 / HTML5 / MHTML
             }
             catch (Exception e)
             {
