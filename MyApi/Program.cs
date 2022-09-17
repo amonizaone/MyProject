@@ -32,8 +32,8 @@ namespace MyApi
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
                 c.UseContentRoot(Directory.GetCurrentDirectory());
                 //c.UseKestrel();
-                //c.UseUrls("http://localhost:5000/", "http://10.10.24.140:5000/");
-                c.UseUrls("http://localhost:5000/");
+                //c.UseUrls("http://localhost:8090", "http://192.168.56.1:8090");
+                //c.UseUrls("http://localhost:5000/");
                 //c.UseSerilog();
                 c.UseStartup<Startup>();
             });

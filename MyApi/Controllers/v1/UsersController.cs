@@ -58,6 +58,11 @@ namespace MyApi.Controllers.v1
 
             return Ok(user);
         }
+        [HttpPost("auth/logout")]
+        public IActionResult PostLogout()
+        { 
+            return Ok();
+        }
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
